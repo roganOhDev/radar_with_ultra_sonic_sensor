@@ -1,4 +1,5 @@
 import json
+from utils.log import logger
 import time
 from receiver.ultra_sonic_sensor import get_distance
 from const.config import labels
@@ -21,16 +22,23 @@ def get_data1():
         i = 0
 
         while True:
-            new_distance = get_distance()
+            try:
+                new_distance = get_distance()
 
-            i %= len(labels)
+                i %= len(labels)
 
-            values[i] = new_distance
-            json_data = json.dumps({'labels': labels, 'values': values})
+                values[i] = new_distance
+                json_data = json.dumps({'labels': labels, 'values': values})
 
-            i += 1
+                i += 1
 
-            yield f"data:{json_data}\n\n"
+                yield f"data:{json_data}\n\n"
+
+            except Exception as e:
+                logger.error(e)
+
+            logger.info(f"Data: {values}")
+
             time.sleep(3)
 
     return Response(stream(), mimetype='text/event-stream')
