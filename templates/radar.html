@@ -44,7 +44,17 @@
         return new Chart(canvas, {
             type: 'radar',
             data: data_set,
-            options: {}
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
         });
     }
 
