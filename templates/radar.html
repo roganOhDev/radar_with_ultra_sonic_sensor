@@ -9,35 +9,49 @@
     <canvas id="Radar"></canvas>
 </div>
 <script>
-    const url = "{{ url_for('radar.get_data') }}"
+    const url = "/radar/data"
 
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const canvas = document.getElementById('Radar').getContext('2d');
-            const data_set = {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Radar Dataset',
-                    data: data.values,
-                    fill: true,
-                    backgroundColor: 'rgb(120,225,15)',
-                    borderColor: 'rgb(47,244,14)',
-                    pointBackgroundColor: 'rgb(141,255,99)',
-                    pointBorderColor: 'rgba(0,0,0,0)',
-                    pointHoverBackgroundColor: 'rgba(0,0,0,0)',
-                    pointHoverBorderColor: 'rgb(0,0,0)',
-                    borderJoinStyle: 'round',
-                }]
-            }
+    const source = new EventSource(url)
 
-            new Chart(canvas, {
-                type: 'radar',
-                data: data_set,
-                options: {}
-            });
-        })
-        .catch(error => console.error(error))
+    const radar_chart = init_chart();
+
+    source.onmessage = function (msg) {
+        const data = JSON.parse(msg.data)
+
+        update_chart(radar_chart, data);
+    }
+
+    function init_chart() {
+        const canvas = document.getElementById('Radar');
+        const data_set = {
+            labels: [],
+            datasets: [{
+                label: 'Radar Dataset',
+                data: [],
+                fill: true,
+                backgroundColor: 'rgb(120,225,15)',
+                borderColor: 'rgb(47,244,14)',
+                pointBackgroundColor: 'rgb(141,255,99)',
+                pointBorderColor: 'rgba(0,0,0,0)',
+                pointHoverBackgroundColor: 'rgba(0,0,0,0)',
+                pointHoverBorderColor: 'rgb(0,0,0)',
+                borderJoinStyle: 'round',
+            }]
+        }
+
+        return new Chart(canvas, {
+            type: 'radar',
+            data: data_set,
+            options: {}
+        });
+    }
+
+    function update_chart(radar_chart, data) {
+        radar_chart.data.datasets[0].data = data.values;
+        radar_chart.data.labels = data.labels;
+
+        radar_chart.update();
+    }
 
 </script>
 </body>
