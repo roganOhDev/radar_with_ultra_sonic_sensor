@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask SSE Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+<script>
+    const ctx = document.getElementById('myChart');
+    const lineChart = new Chart(ctx, {
+        type: 'line', data: {
+            labels: [], datasets: [{
+                label: 'random integer', data: [],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    const source = new EventSource("/stream/");
+    source.onmessage = function (msg) {
+        const data = JSON.parse(msg.data);
+// target.innerHTML = target.innerHTML + data.time + ' ' + data.value + '<br>';
+        if (lineChart.data.labels.length == 20) {
+            lineChart.data.labels.shift(); // 배열 맨 앞의 값을 제거한다.
+            lineChart.data.datasets[0].data.shift();
+        }
+        lineChart.data.labels.push(data.time);
+        lineChart.data.datasets[0].data.push(data.value);
+        lineChart.update();
+    } </script>
+</body>
+</html>
