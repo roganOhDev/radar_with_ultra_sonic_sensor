@@ -1,8 +1,3 @@
-import json
-from utils.log import logger
-import time
-from receiver.ultra_sonic_sensor import get_distance
-from const.config import labels
 from domain.radar import radar_service
 
 from flask import render_template, Blueprint, Response

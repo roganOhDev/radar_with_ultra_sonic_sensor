@@ -12,15 +12,11 @@ def get_distance_data_with_stream() -> None:
 
     while True:
         try:
-            new_distance = get_distance()
-
             i %= len(labels)
 
-            values[i] = new_distance
-            json_data = json.dumps({'labels': labels, 'values': values})
+            json_data = __get_json_data(values, i)
 
             i += 1
-
             yield f"data:{json_data}\n\n"
 
         except Exception as e:
@@ -29,3 +25,10 @@ def get_distance_data_with_stream() -> None:
         logger.info(f"Data: {values}")
 
         time.sleep(3)
+
+
+def __get_json_data(values: [int], i: int) -> json:
+    new_distance = get_distance()
+
+    values[i] = new_distance
+    return json.dumps({'labels': labels, 'values': values})
