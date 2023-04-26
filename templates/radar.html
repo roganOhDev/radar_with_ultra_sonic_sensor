@@ -5,8 +5,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div>
-    <canvas id="Radar"></canvas>
+<div class="chart-container" style="position: relative; height:500px; width:500vw">
+	<canvas id="Radar"></canvas>
 </div>
 <script>
     const url = "{{ url_for('radar.get_data') }}"
@@ -19,17 +19,17 @@
             const data_set = {
                 labels: data.labels,
                 datasets: [{
-                        label: 'My First Dataset',
-                        data: data.values,
-                        fill: true,
-                        backgroundColor: 'rgb(120,225,15)',
-                        borderColor: 'rgb(47,244,14)',
-                        pointBackgroundColor: 'rgb(141,255,99)',
-                        pointBorderColor: 'rgba(0,0,0,0)',
-                        pointHoverBackgroundColor: 'rgba(0,0,0,0)',
-                        pointHoverBorderColor: 'rgb(0,0,0)',
-                        borderJoinStyle: 'round',
-                    }]
+                    label: 'My First Dataset',
+                    data: data.values,
+                    fill: true,
+                    backgroundColor: 'rgb(120,225,15)',
+                    borderColor: 'rgb(47,244,14)',
+                    pointBackgroundColor: 'rgb(141,255,99)',
+                    pointBorderColor: 'rgba(0,0,0,0)',
+                    pointHoverBackgroundColor: 'rgba(0,0,0,0)',
+                    pointHoverBorderColor: 'rgb(0,0,0)',
+                    borderJoinStyle: 'round',
+                }]
             }
 
             const chart = new Chart(canvas, {
