@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="chart-container" style="position: relative; height:500px; width:500vw">
-	<canvas id="Radar"></canvas>
+    <canvas id="Radar"></canvas>
 </div>
 <script>
     const url = "{{ url_for('radar.get_data') }}"
@@ -14,7 +14,6 @@
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            // Use data to create chart
             const canvas = document.getElementById('Radar').getContext('2d');
             const data_set = {
                 labels: data.labels,
@@ -32,7 +31,7 @@
                 }]
             }
 
-            const chart = new Chart(canvas, {
+            new Chart(canvas, {
                 type: 'radar',
                 data: data_set,
                 options: {}
