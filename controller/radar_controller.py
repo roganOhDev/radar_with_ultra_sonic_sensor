@@ -1,14 +1,14 @@
 from flask import render_template, Blueprint, jsonify
 
-bp = Blueprint('radar', __name__)
+bp = Blueprint('radar', __name__, url_prefix='/radar')
 
 
-@bp.route('/radar', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def show_radar():
     return render_template('radar.html')
 
 
-@bp.route('/radar/data')
+@bp.route('/data')
 def get_data():
     data = {
         'labels': ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
