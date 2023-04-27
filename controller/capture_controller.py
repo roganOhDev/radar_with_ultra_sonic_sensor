@@ -1,6 +1,7 @@
 from flask import render_template, Blueprint, Response, jsonify
 
 from const.config import labels
+from domain.radar import capture_service
 
 bp = Blueprint('capture', __name__, url_prefix='/capture')
 
@@ -12,11 +13,8 @@ def show_capture_list() -> str:
 
 @bp.route('/get')
 def get_list_data() -> Response:
-    data = {
-        'values': [65, 59, 90, 81, 56, 55, 40]
-    }
 
-    return jsonify(data)
+    return capture_service.get_list()
 
 
 @bp.route('/<id>')

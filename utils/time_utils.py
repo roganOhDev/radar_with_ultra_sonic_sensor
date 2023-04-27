@@ -9,4 +9,4 @@ def get_unix_time(real_datetime: datetime) -> float:
 
 
 def get_date_time(unix_time: float) -> datetime:
-    dt.utcfromtimestamp(unix_time)
+    return dt.utcfromtimestamp(unix_time)
