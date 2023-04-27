@@ -33,9 +33,9 @@
     $(function () {
         $.get('/capture/get', function (data) {
             var tbody = $('#captureDates tbody');
-            for (var i = 0; i < data.values.length; i++) {
+            for (var i = 0; i < data.dates.length; i++) {
                 var row = $('<tr>');
-                var link = $('<a>').text(data.values[i]).attr('href', 'http://127.0.0.1:5000/capture/' + data.ids[i]);
+                var link = $('<a>').text(data.dates[i]).attr('href', 'http://127.0.0.1:5000/capture/' + data.ids[i]);
                 var cell = $('<td>').append(link);
                 row.append(cell);
                 tbody.append(row);

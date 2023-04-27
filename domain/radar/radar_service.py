@@ -25,7 +25,7 @@ def get_distance_data_with_stream() -> None:
 
         logger.info(f"Data: {values}")
 
-        time.sleep(3)
+        time.sleep(0.5)
 
 
 def __get_json_data(values: [int], i: int) -> json:

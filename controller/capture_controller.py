@@ -13,8 +13,7 @@ def show_capture_list() -> str:
 
 @bp.route('/get')
 def get_list_data() -> Response:
-
-    return capture_service.get_list()
+    return capture_service.find_list()
 
 
 @bp.route('/<id>')
@@ -24,9 +23,4 @@ def show_data(id: int) -> str:
 
 @bp.route('/<id>/get')
 def get_data(id: int) -> Response:
-    data = {
-        'labels': labels,
-        'values': [65, 59, 90, 81, 56, 55, 40]
-    }
-
-    return jsonify(data)
+    return capture_service.find(id)

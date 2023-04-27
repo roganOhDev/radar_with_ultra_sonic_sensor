@@ -16,5 +16,5 @@ class RunVersion(Enum):
     demo = "DEMO"
 
 
-version = RunVersion.debug
-# version = RunVersion.demo
+# version = RunVersion.debug
+version = RunVersion.demo
