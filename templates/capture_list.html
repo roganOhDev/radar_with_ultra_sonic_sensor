@@ -2,10 +2,23 @@
 <html>
 <head>
     <title>Table Example</title>
+    <style>
+        #captureDates {
+            margin: 0 auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<table id="myTable">
+<table id="captureDates">
     <thead>
     <tr>
         <th>Date</th>
@@ -17,7 +30,7 @@
 <script>
     $(function () {
         $.get('/capture/get', function (data) {
-            var tbody = $('#myTable tbody');
+            var tbody = $('#captureDates tbody');
             for (var i = 0; i < data.values.length; i++) {
                 var row = $('<tr>');
                 row.append($('<td>').text(data.values[i]));
