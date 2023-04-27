@@ -1,6 +1,4 @@
-import uuid
-
-from sqlalchemy import Column, String, Text, INTEGER
+from sqlalchemy import Column, Text, INTEGER
 from sqlalchemy.ext.declarative import declarative_base
 from const.database_config import engine
 
