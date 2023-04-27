@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Radar</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="chart-container" style="position: relative; height:500px; width:500vw">
+    <canvas id="Radar"></canvas>
+</div>
+<script>
+    const url = "/radar/"
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            init_chart();
+
+            console.log(data.values + "  Updated Successfully");
+        })
+
+    function init_chart() {
+        const canvas = document.getElementById('Radar');
+        const data_set = {
+            labels: [],
+            datasets: [{
+                label: 'Radar Dataset',
+                data: [],
+                fill: true,
+                backgroundColor: 'rgb(120,225,15)',
+                borderColor: 'rgb(47,244,14)',
+                pointBackgroundColor: 'rgb(141,255,99)',
+                pointBorderColor: 'rgba(0,0,0,0)',
+                pointHoverBackgroundColor: 'rgba(0,0,0,0)',
+                pointHoverBorderColor: 'rgb(0,0,0)',
+                borderJoinStyle: 'round',
+            }]
+        }
+
+        new Chart(canvas, {
+            type: 'radar',
+            data: data_set,
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

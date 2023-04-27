@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<table id="myTable">
+    <thead>
+    <tr>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.get('/capture/get', function (data) {
+            var tbody = $('#myTable tbody');
+            for (var i = 0; i < data.values.length; i++) {
+                var row = $('<tr>');
+                row.append($('<td>').text(data.values[i]));
+                tbody.append(row);
+            };
+        });
+    });
+</script>
+</body>
+</html>
