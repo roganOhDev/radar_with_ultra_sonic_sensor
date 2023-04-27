@@ -19,7 +19,7 @@ def get_list_data() -> Response:
 
 @bp.route('/<id>')
 def show_data(id: int) -> str:
-    return render_template('capture.html')
+    return render_template('capture.html', id=id)
 
 
 @bp.route('/<id>/get')

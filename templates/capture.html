@@ -3,29 +3,30 @@
 <head>
     <title>Radar</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Capture {{ id }}</title>
 </head>
 <body>
 <div class="chart-container" style="position: relative; height:500px; width:500vw">
     <canvas id="Radar"></canvas>
 </div>
 <script>
-    const url = "/radar/"
+    const url = "/capture/{{ id }}/get"
 
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            init_chart();
+            init_chart(data);
 
             console.log(data.values + "  Values");
         })
 
-    function init_chart() {
+    function init_chart(data) {
         const canvas = document.getElementById('Radar');
         const data_set = {
-            labels: [],
+            labels: data.labels,
             datasets: [{
                 label: 'Radar Dataset',
-                data: [],
+                data: data.values,
                 fill: true,
                 backgroundColor: 'rgb(120,225,15)',
                 borderColor: 'rgb(47,244,14)',
