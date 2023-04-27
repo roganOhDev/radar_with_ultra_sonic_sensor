@@ -19,3 +19,5 @@ formatter = ColoredFormatter('%(asctime)s - %(log_color)s%(levelname)s%(reset)s 
 stream_handler = logging.StreamHandler()
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
+
+logging.getLogger('sqlalchemy').setLevel(logging.ERROR)

@@ -2,6 +2,7 @@ import json
 import time
 
 from const.config import labels
+from domain.radar import capture_repository
 from receiver.ultra_sonic_sensor import get_distance
 from utils.log import logger
 
@@ -31,4 +32,7 @@ def __get_json_data(values: [int], i: int) -> json:
     new_distance = get_distance()
 
     values[i] = new_distance
+
+    capture_repository.create(values)
+
     return json.dumps({'labels': labels, 'values': values})

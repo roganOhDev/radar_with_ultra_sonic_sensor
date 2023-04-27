@@ -9,3 +9,4 @@ def get_distance():
     logger.info(f"Distance From Sensor: {distance}")
 
     return distance
+
