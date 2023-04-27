@@ -6,10 +6,12 @@
         #captureDates {
             margin: 0 auto;
         }
+
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
         }
+
         th, td {
             padding: 5px;
             text-align: center;
@@ -33,9 +35,12 @@
             var tbody = $('#captureDates tbody');
             for (var i = 0; i < data.values.length; i++) {
                 var row = $('<tr>');
-                row.append($('<td>').text(data.values[i]));
+                var link = $('<a>').text(data.values[i]).attr('href', 'http://127.0.0.1:5000/capture/' + data.ids[i]);
+                var cell = $('<td>').append(link);
+                row.append(cell);
                 tbody.append(row);
-            };
+            }
+            ;
         });
     });
 </script>
