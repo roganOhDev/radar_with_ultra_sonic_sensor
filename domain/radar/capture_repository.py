@@ -22,6 +22,7 @@ def get_all() -> [int]:
     stmt = select(Capture.id, Capture.created_at).order_by(Capture.id.desc())
     return db.execute(stmt).fetchall()
 
+
 def find(id: int):
     db = next(get_db())
     stmt = select(Capture.data).where(Capture.id == id)
@@ -30,7 +31,6 @@ def find(id: int):
     if capture is None:
         logger.error("Capture is Not Found, ID : " + str(id))
         default_values = [0] * label_size
-        return (default_values, )
+        return (default_values,)
 
     return capture
-

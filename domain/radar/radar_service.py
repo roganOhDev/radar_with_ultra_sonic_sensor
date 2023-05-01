@@ -1,7 +1,7 @@
 import json
 import time
 
-from const.config import label_size, labels
+from const.config import label_size, labels, radar_latency
 from domain.radar import capture_repository
 from receiver.ultra_sonic_sensor import get_distance
 from utils.log import logger
@@ -25,7 +25,7 @@ def get_distance_data_with_stream() -> None:
 
         logger.info(f"Data: {values}")
 
-        time.sleep(0.5)
+        time.sleep(radar_latency)
 
 
 def __get_json_data(values: [int], i: int) -> json:

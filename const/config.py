@@ -18,3 +18,5 @@ class RunVersion(Enum):
 
 # version = RunVersion.debug
 version = RunVersion.demo
+
+radar_latency = 0.5
