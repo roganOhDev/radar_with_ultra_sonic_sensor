@@ -6,12 +6,14 @@
     <title>Button Link Example</title>
 </head>
 <body>
- <h1>My Website</h1>
-    <button>
-        <a href="http://127.0.0.1:5000/capture/">Capture List</a>
-    </button>
-
-<div class="chart-container" style="position: relative; height:500px; width:500vw">
+<h1>My Website</h1>
+<button>
+    <a href="http://127.0.0.1:5000/capture/">Capture List</a>
+</button>
+<div style="position: absolute; top: 15%; left: 0%; height: 500px; width: 500vw;">
+    <div style="position: absolute; top: 0; left: 0;height: 500px; width: 40vw; border: 1px solid black; background-color: black;"></div>
+</div>
+<div class="chart-container" style="position: absolute; top: 15%; left: 0%; height: 500px; width: 500vw;">
     <canvas id="Radar"></canvas>
 </div>
 <script>
@@ -40,9 +42,9 @@
                 backgroundColor: 'rgb(120,225,15)',
                 borderColor: 'rgb(47,244,14)',
                 pointBackgroundColor: 'rgb(141,255,99)',
-                pointBorderColor: 'rgba(0,0,0,0)',
-                pointHoverBackgroundColor: 'rgba(0,0,0,0)',
-                pointHoverBorderColor: 'rgb(0,0,0)',
+                pointBorderColor: 'rgb(255,255,255)',
+                pointHoverBackgroundColor: 'rgb(255,255,255)',
+                pointHoverBorderColor: 'rgb(255,255,255)',
                 borderJoinStyle: 'round',
             }]
         }
