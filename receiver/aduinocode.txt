@@ -1,0 +1,27 @@
+void setup() {
+  pinMode(10,OUTPUT);
+  pinMode(9,INPUT);
+  Serial.begin(9600);
+
+}
+
+void loop() {
+
+  digitalWrite(10,LOW);
+  delayMicroseconds(2);
+  digitalWrite(10,HIGH);
+  delayMicroseconds(2);
+  digitalWrite(10,LOW);
+
+  long distime = pulseIn(9,HIGH);
+  if(distime==0){
+    Serial.print("too close");
+    return;
+  }
+
+  long distance = distime / 58.2;
+  
+  Serial.print(distance);
+  
+  delay(500);
+}
