@@ -1,4 +1,4 @@
-from const.config import port, baudrate, timeout
+from const.config import port, baudrate, timeout, max_distance
 import serial
 
 from utils.log import logger
@@ -12,8 +12,8 @@ def get_distance() -> int:
     distance = int(float(coms.readline().decode('utf-8').strip()))
     logger.info(f"distance: {distance}")
 
-    if distance >= 100:
-        return 100
+    if distance >= max_distance or distance == 0:
+        return max_distance
     else:
         return distance
 
