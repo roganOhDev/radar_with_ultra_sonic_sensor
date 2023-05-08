@@ -1,5 +1,6 @@
 from enum import Enum
 
+# radar graph
 angle = 0
 label_size = 10
 labels = []
@@ -8,15 +9,21 @@ while angle < 360:
     angle += 360 / label_size
 
 max_distance = 100
+
+radar_latency = 0.5
+# database
 db_name = "test.db"
 
 
+# version = RunVersion.debug
 class RunVersion(Enum):
     debug = "DEBUG"
     demo = "DEMO"
 
 
-# version = RunVersion.debug
 version = RunVersion.demo
 
-radar_latency = 0.5
+# arduino
+port = "COM3"
+baudrate = 9600
+timeout = 0.001

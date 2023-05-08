@@ -7,3 +7,6 @@ MarkupSafe==2.1.2
 SQLAlchemy==2.0.10
 typing_extensions==4.5.0
 Werkzeug==2.2.3
+
+DateTime~=5.1
+pyserial~=3.5
