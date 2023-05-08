@@ -9,15 +9,15 @@ from utils.log import logger
 
 def get_distance_data_with_stream() -> None:
     values = [0] * label_size
+    i_increase = True
     i = 0
 
     while True:
         try:
-            i %= label_size
+            i, i_increase = __get_label_num(i, i_increase)
 
             json_data = __get_json_data(values, i)
 
-            i += 1
             yield f"data:{json_data}\n\n"
 
         except Exception as e:
@@ -36,3 +36,21 @@ def __get_json_data(values: [int], i: int) -> json:
     capture_repository.create(values)
 
     return json.dumps({'labels': labels, 'values': values})
+
+
+def __get_label_num(before_label_value: int, i_increase: bool) -> (int, int):
+    label_value: int
+
+    if i_increase:
+        label_value = before_label_value + 1
+        if label_value == label_size:
+            i_increase = False
+            label_value = before_label_value - 1
+
+    else:
+        label_value = before_label_value - 1
+        if label_value == 0:
+            i_increase = True
+            label_value = before_label_value + 1
+
+    return label_value, i_increase
