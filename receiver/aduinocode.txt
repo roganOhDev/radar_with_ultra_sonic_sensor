@@ -1,27 +1,51 @@
-void setup() {
-  pinMode(10,OUTPUT);
-  pinMode(9,INPUT);
-  Serial.begin(9600);
+#include <Stepper.h>
 
+const int oneCycle = 2048;
+const int count = oneCycle;
+const int stepMotorSpeed = 10;
+
+const int trig = 6;
+const int echo = 5;
+
+Stepper stepmotor
+(oneCycle, 10, 12, 11 ,13);
+
+void setup() {
+    pinMode(trig,OUTPUT);
+  pinMode(echo,INPUT);
+
+  stepmotor.setSpeed(stepMotorSpeed);
+
+  Serial.begin(9600);
 }
 
 void loop() {
-
-  digitalWrite(10,LOW);
-  delayMicroseconds(2);
-  digitalWrite(10,HIGH);
-  delayMicroseconds(2);
-  digitalWrite(10,LOW);
-
-  long distime = pulseIn(9,HIGH);
-  if(distime==0){
-    Serial.print("too close");
-    return;
+  for (int i = 0;i <200;i++){
+    stepmotor.step(10);
+    Serial.println(ultra_sonic_sensor());
   }
 
-  long distance = distime / 58.2;
-  
-  Serial.print(distance);
-  
-  delay(500);
+  delay(1000);
+
+  for (int i = 0;i <200;i++){
+    stepmotor.step(-10);
+    Serial.println(ultra_sonic_sensor());
+  }
+  delay(1000);
+}
+
+
+long ultra_sonic_sensor() {
+  digitalWrite(trig,LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(2);
+  digitalWrite(trig,LOW);
+
+  long distime = pulseIn(echo,HIGH);
+  if(distime==0){
+    return 0;
+  }
+
+  return distime / 58.2;
 }

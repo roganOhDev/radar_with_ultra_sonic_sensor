@@ -1,0 +1,19 @@
+#include <Stepper.h>
+
+const int oneCycle = 2048;
+const int count = oneCycle;
+const int stepMotorSpeed = 10;
+
+Stepper stepmotor
+(oneCycle, 10, 12, 11 ,13);
+
+void setup() {
+
+  stepmotor.setSpeed(stepMotorSpeed);
+}
+
+void loop() {
+  stepmotor.step(oneCycle);
+  stepmotor.step(-oneCycle);
+}
+

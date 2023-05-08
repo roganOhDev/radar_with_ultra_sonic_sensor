@@ -24,6 +24,8 @@ class RunVersion(Enum):
 version = RunVersion.demo
 
 # arduino
-port = "COM3"
+# port = "COM3"
+# port = "/dev/cu.Bluetooth-Incoming-Port"
+port = "/dev/cu.usbmodem101"
 baudrate = 9600
-timeout = 0.001
+timeout = 2
