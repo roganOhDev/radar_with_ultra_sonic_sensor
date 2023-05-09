@@ -1,6 +1,5 @@
-from flask import render_template, Blueprint, Response, jsonify
+from flask import render_template, Blueprint, Response
 
-from const.config import labels
 from domain.radar import capture_service
 
 bp = Blueprint('capture', __name__, url_prefix='/capture')

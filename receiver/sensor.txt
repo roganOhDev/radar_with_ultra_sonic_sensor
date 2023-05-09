@@ -2,36 +2,20 @@ const int trig = 6;
 const int echo = 5;
 
 void setup() {
-  pinMode(trig,OUTPUT);
-  pinMode(echo,INPUT);
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
 
   Serial.begin(9600);
 }
 
 void loop() {
-  static bool dataReceived = false;
-
-  if (!dataReceived &&Serial.available() > 0) {
-
-    String data = Serial.readString();
-
-    digitalWrite(trig,LOW);
+    digitalWrite(trig, LOW);
     delayMicroseconds(2);
-    digitalWrite(trig,HIGH);
+    digitalWrite(trig, HIGH);
     delayMicroseconds(2);
-    digitalWrite(trig,LOW);
+    digitalWrite(trig, LOW);
 
-    long distime = pulseIn(echo,HIGH);
-    if(distime==0){
-      Serial.println(0);
-    }
+    long distime = pulseIn(echo, HIGH, 40000);
 
     Serial.println(distime / 58.2);
-    dataReceived = true;
-  }
-
-    if (dataReceived && Serial.available() == 0) {
-    dataReceived = false;  // 데이터 수신 대기 상태로 설정
-  }
-
 }
