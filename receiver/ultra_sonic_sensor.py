@@ -17,7 +17,6 @@ def get_distance() -> int:
     else:
         return distance
 
-
 def clear_serial_buffer():
     while coms.in_waiting > 0:
         _ = coms.readline()

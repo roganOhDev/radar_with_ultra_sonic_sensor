@@ -2,13 +2,13 @@ from enum import Enum
 
 # radar graph
 angle = 0
-label_size = 10
+label_size = 12
 labels = []
 while angle < 360:
     labels.append(str(angle) + " degree")
-    angle += 360 / label_size
+    angle += round(360 / label_size)
 
-max_distance = 100
+max_distance = 25
 
 radar_latency = 0.5
 # database
@@ -26,6 +26,6 @@ version = RunVersion.demo
 # arduino
 # port = "COM3"
 # port = "/dev/cu.Bluetooth-Incoming-Port"
-port = "/dev/cu.usbmodem101"
+port = "/dev/cu.usbmodem1101"
 baudrate = 9600
 timeout = 2

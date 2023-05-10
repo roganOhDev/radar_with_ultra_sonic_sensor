@@ -49,7 +49,7 @@ def __get_label_num(before_label_value: int, i_increase: bool) -> (int, int):
 
     else:
         label_value = before_label_value - 1
-        if label_value == 0:
+        if label_value < 0:
             i_increase = True
             label_value = before_label_value + 1
 
